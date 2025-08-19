@@ -31,7 +31,15 @@ input, label{
   color: green;
   font-weight: bold;
   border-color: lightpink;
-  border-radius: 5pt;
-  
+  border-radius: 5pt;  
+}
+
+button{
+  background: green;
+  color: white;
+  font-weight: bold;
+  width: 70px;
+  height: 30px;
+  border-radius: 5px;
 }
 
