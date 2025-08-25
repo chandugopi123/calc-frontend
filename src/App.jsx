@@ -1,20 +1,37 @@
 import React, { Component } from 'react';
 import './App.css';
-import { callApi,BASEURL } from './api';
+import { callApi, BASEURL } from './api';
 
 class App extends Component {
   constructor(){
     super();
-    this.state={A:0,B:0,RES:0};
+    this.state={A:0,B:0,RES:"0",isError:false};
     this.getResponse = this.getResponse.bind(this);
   }
 
   add(){
-    callApi("GET", BASEURL + `add/${this.state.A}/${this.state.B}`, "", this.getResponse);
+    callApi("GET", BASEURL + add/${this.state.A}/${this.state.B}, "", this.getResponse);
+  }
+
+  sub(){
+    callApi("GET", BASEURL + sub/${this.state.A}/${this.state.B}, "", this.getResponse);
+  }
+
+  mul(){
+    callApi("GET", BASEURL + mul/${this.state.A}/${this.state.B}, "", this.getResponse);
+  }
+
+  div(){
+    callApi("GET", BASEURL + div/${this.state.A}/${this.state.B}, "", this.getResponse);
   }
 
   getResponse(res){
-    this.setState({RES: res});
+    // check if response contains error
+    if (res.startsWith("Error")) {
+      this.setState({RES: res, isError: true});
+    } else {
+      this.setState({RES: res, isError: false});
+    }
   }
 
   loadInputChange(event){
@@ -22,7 +39,7 @@ class App extends Component {
   }
 
   render() {
-    const {A, B, RES} = this.state;
+    const {A, B, RES, isError} = this.state;
     return (
       <>
         <header>
@@ -40,11 +57,22 @@ class App extends Component {
             </tr>
             <tr>
               <td>Result</td>
-              <td><label id='L1'>{RES}</label></td>
+              <td>
+                <label 
+                  id='L1' 
+                  className={isError ? 'error' : 'success'}>
+                  {RES}
+                </label>
+              </td>
             </tr>
             <tr>
               <td></td>
-              <td><button onClick={()=>this.add()}>ADD</button></td>              
+              <td>
+                <button onClick={()=>this.add()}>ADD</button>
+                <button onClick={()=>this.sub()}>SUB</button>
+                <button onClick={()=>this.mul()}>MUL</button>
+                <button onClick={()=>this.div()}>DIV</button>
+              </td>              
             </tr>
           </table>
         </section>
