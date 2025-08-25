@@ -9,21 +9,26 @@ class App extends Component {
     this.getResponse = this.getResponse.bind(this);
   }
 
-  add(){
-    callApi("GET", BASEURL + add/${this.state.A}/${this.state.B}, "", this.getResponse);
+  
+   add() {
+  callApi("GET", `${BASEURL}add/${this.state.A}/${this.state.B}`, "", this.getResponse);
+
+
   }
 
   sub(){
-    callApi("GET", BASEURL + sub/${this.state.A}/${this.state.B}, "", this.getResponse);
+    callApi("GET", `${BASEURL}sub/${this.state.A}/${this.state.B}`, "", this.getResponse);
+
   }
 
-  mul(){
-    callApi("GET", BASEURL + mul/${this.state.A}/${this.state.B}, "", this.getResponse);
-  }
+ mul() {
+  callApi("GET", `${BASEURL}mul/${this.state.A}/${this.state.B}`, "", this.getResponse);
+}
 
-  div(){
-    callApi("GET", BASEURL + div/${this.state.A}/${this.state.B}, "", this.getResponse);
-  }
+div() {
+  callApi("GET", `${BASEURL}div/${this.state.A}/${this.state.B}`, "", this.getResponse);
+}
+
 
   getResponse(res){
     // check if response contains error
